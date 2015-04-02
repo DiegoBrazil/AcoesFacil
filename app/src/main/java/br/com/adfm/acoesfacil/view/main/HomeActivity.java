@@ -1,9 +1,11 @@
-package br.com.adfm.acoesfacil;
+package br.com.adfm.acoesfacil.view.main;
 
 import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
+
+import br.com.adfm.acoesfacil.R;
 
 
 public class HomeActivity extends ActionBarActivity {
