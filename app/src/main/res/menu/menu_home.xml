@@ -4,8 +4,8 @@
 
     <item android:id="@+id/acao"
         android:icon="@drawable/acoes1"
-        android:title="@string/menu_acao"
-        app:showAsAction="always|withText" />
+        android:title="@string/menu_acao"/>
+        <!--app:showAsAction="always|withText"-->
     <item android:id="@+id/favoritos"
         android:title="@string/menu_favoritas"
         />
