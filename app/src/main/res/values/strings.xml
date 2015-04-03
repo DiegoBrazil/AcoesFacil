@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">Ações Facil</string>
+    <string name="app_name">Ações Fácil</string>
 
     <string name="hello_world">Hello world!</string>
     <string name="action_settings">Settings</string>
@@ -7,4 +7,5 @@
     <string name="menu_acao">Ação</string>
     <string name="menu_favoritas">Favoritas</string>
     <string name="menu_conf">Configurações</string>
+    <string name="title_activity_acoes">AcoesActivity</string>
 </resources>
