@@ -7,6 +7,7 @@
         android:title="@string/menu_acao"/>
         <!--app:showAsAction="always|withText"-->
     <item android:id="@+id/favoritos"
+        android:icon="@drawable/favorito"
         android:title="@string/menu_favoritas"
         />
     <item android:id="@+id/configuracao"

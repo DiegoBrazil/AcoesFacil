@@ -35,6 +35,9 @@ public class HomeActivity extends ActionBarActivity {
         //if (id == R.id.action_settings) {
         //    return true;
         //}
+        if (id == R.id.favoritos) {
+            setContentView(R.layout.ativos_favoritos);
+        }
 
         return super.onOptionsItemSelected(item);
     }
