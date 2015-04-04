@@ -8,6 +8,5 @@
     <string name="menu_favoritas">Favoritas</string>
     <string name="menu_conf">Configurações</string>
     <string name="title_activity_acoes">AcoesActivity</string>
-
     <string name="title_activity_configuracao">Configuracao</string>
 </resources>
