@@ -20,8 +20,8 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".view.main.AcoesActivity"
-            android:label="@string/title_activity_acoes" >
+            android:name=".view.main.ConfiguracaoActivity"
+            android:label="@string/title_activity_configuracao" >
         </activity>
     </application>
 
