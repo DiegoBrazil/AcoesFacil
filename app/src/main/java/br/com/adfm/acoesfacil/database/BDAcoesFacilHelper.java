@@ -41,10 +41,10 @@ public class BDAcoesFacilHelper extends SQLiteOpenHelper {
         SQL de criação da tabela de ativos Favoritos
      */
     private static final String SQL_DML_TB_FAVORITOS = "CREATE TABLE if not exists " +
-            BDAcoesFacilHelper.SQL_DML_TB_ATIVOS +
+            BDAcoesFacilHelper.TB_FAVORITOS + " (" +
             BDAcoesFacilHelper.COL_ID_FAV + " text PRIMARY KEY," +
-            BDAcoesFacilHelper.COL_QTD_COMPRA_FAV + "  real " +
-            BDAcoesFacilHelper.COL_VLR_COMPRA_FAV +" real " ;
+            BDAcoesFacilHelper.COL_QTD_COMPRA_FAV + "  real, " +
+            BDAcoesFacilHelper.COL_VLR_COMPRA_FAV +" real )" ;
 
     /*
         SQL de exclusão das tabela de Ativos e Favoritos
@@ -55,9 +55,10 @@ public class BDAcoesFacilHelper extends SQLiteOpenHelper {
         Sql de criação da tabela de ativos
      */
     private static final String SQL_DML_TB_ATIVOS = "CREATE TABLE if not exists " +
-            BDAcoesFacilHelper.TB_ATIVOS +
-            BDAcoesFacilHelper.COL_ID_ATIVOS + " text PRIMARY KEY" +
-            BDAcoesFacilHelper.COL_NOME_EMPRESA + " text";
+            BDAcoesFacilHelper.TB_ATIVOS + " (" +
+            BDAcoesFacilHelper.COL_ID_ATIVOS + " text PRIMARY KEY, " +
+            BDAcoesFacilHelper.COL_NOME_EMPRESA + " text )";
+
     private static final String SQL_DML_DROP_TB_ATIVOS = "DROP TABLE if exists " + BDAcoesFacilHelper.TB_ATIVOS;
 
     private SQLiteDatabase db;

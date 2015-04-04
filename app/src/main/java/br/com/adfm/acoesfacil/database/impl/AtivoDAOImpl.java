@@ -71,6 +71,7 @@ public class AtivoDAOImpl implements AtivoDAO {
             // Enquanto for antes do último
             while(cursor.isAfterLast() == false){
                 lista.add(this.criarEntidade(cursor));
+                cursor.moveToNext(); // Marcelo 04/04/2015
             }
         }
 
