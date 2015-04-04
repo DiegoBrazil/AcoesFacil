@@ -41,7 +41,7 @@ public class HomeActivity extends ActionBarActivity {
                 //TODO menu ação
                 return true;
             case R.id.favoritos:
-                setContentView(R.layout.ativos_favoritos);
+                setContentView(R.layout.activity_ativos_favoritos);
                 return true;
             case R.id.configuracao:
                 //TODO menu conf
