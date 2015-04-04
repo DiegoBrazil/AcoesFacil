@@ -16,6 +16,12 @@ public interface AtivoDAO  {
     public void adicionar(Ativo ativo);
 
     /**
+     * <b>Descrição:</b>Método de alteração de ativo
+     * @param ativo
+     */
+    public void alterar(Ativo ativo);
+
+    /**
      *<b>Descrição:</b> Método de remoção de ativo
      * @param ativo
      */

@@ -3,6 +3,7 @@ package br.com.adfm.acoesfacil.database;
 import android.content.Context;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
+import android.util.Log;
 
 /**
  * Created by alexandre-ms on 01/04/15.
@@ -40,11 +41,12 @@ public class BDAcoesFacilHelper extends SQLiteOpenHelper {
     /*
         SQL de criação da tabela de ativos Favoritos
      */
-    private static final String SQL_DML_TB_FAVORITOS = "CREATE TABLE if not exists " +
-            BDAcoesFacilHelper.SQL_DML_TB_ATIVOS +
-            BDAcoesFacilHelper.COL_ID_FAV + " text PRIMARY KEY," +
-            BDAcoesFacilHelper.COL_QTD_COMPRA_FAV + "  real " +
-            BDAcoesFacilHelper.COL_VLR_COMPRA_FAV +" real " ;
+    private static final String SQL_DML_TB_FAVORITOS = "CREATE TABLE " +
+            BDAcoesFacilHelper.TB_FAVORITOS + " ( " +
+            BDAcoesFacilHelper.COL_ID_FAV + " text PRIMARY KEY, " +
+            BDAcoesFacilHelper.COL_QTD_COMPRA_FAV + "  real, " +
+            BDAcoesFacilHelper.COL_VLR_COMPRA_FAV +" real " +
+            ") " ;
 
     /*
         SQL de exclusão das tabela de Ativos e Favoritos
@@ -54,10 +56,11 @@ public class BDAcoesFacilHelper extends SQLiteOpenHelper {
     /*
         Sql de criação da tabela de ativos
      */
-    private static final String SQL_DML_TB_ATIVOS = "CREATE TABLE if not exists " +
-            BDAcoesFacilHelper.TB_ATIVOS +
-            BDAcoesFacilHelper.COL_ID_ATIVOS + " text PRIMARY KEY" +
-            BDAcoesFacilHelper.COL_NOME_EMPRESA + " text";
+    private static final String SQL_DML_TB_ATIVOS = "CREATE TABLE " +
+            BDAcoesFacilHelper.TB_ATIVOS + " ( " +
+            BDAcoesFacilHelper.COL_ID_ATIVOS + " text PRIMARY KEY, " +
+            BDAcoesFacilHelper.COL_NOME_EMPRESA + " text" +
+            ") ";
     private static final String SQL_DML_DROP_TB_ATIVOS = "DROP TABLE if exists " + BDAcoesFacilHelper.TB_ATIVOS;
 
     private SQLiteDatabase db;
@@ -81,6 +84,9 @@ public class BDAcoesFacilHelper extends SQLiteOpenHelper {
 
     @Override
     public void onCreate(SQLiteDatabase db) {
+        Log.d("DATABASE", "TB -> Ativos    - create: " + SQL_DML_TB_ATIVOS );
+        Log.d("DATABASE", "TB -> Favoritos - create: " + SQL_DML_TB_FAVORITOS );
+
         // Cria a tabela de favoritos
         db.execSQL(SQL_DML_TB_FAVORITOS);
         // Cria a tabela de ativos
@@ -90,8 +96,10 @@ public class BDAcoesFacilHelper extends SQLiteOpenHelper {
     @Override
     public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
         // remove as tabelas
+        Log.d("DATABASE", "TB -> Ativos    - create: " + SQL_DML_DROP_TB_ATIVOS );
+        Log.d("DATABASE", "TB -> Favoritos - create: " + SQL_DML_DROP_TB_FAVORITOS );
         db.execSQL(BDAcoesFacilHelper.SQL_DML_DROP_TB_ATIVOS);
-        db.execSQL(BDAcoesFacilHelper.SQL_DML_DROP_TB_ATIVOS);
+        db.execSQL(BDAcoesFacilHelper.SQL_DML_DROP_TB_FAVORITOS);
         // Cria novamente
         onCreate(db);
     }
