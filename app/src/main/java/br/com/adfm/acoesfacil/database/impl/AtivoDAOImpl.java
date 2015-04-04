@@ -76,7 +76,6 @@ public class AtivoDAOImpl implements AtivoDAO {
     public List<Ativo> listarFavoritos() {
         List<Ativo> lista = new ArrayList<>();
         String sqlConsulta = "Select * from " + BDAcoesFacilHelper.TB_FAVORITOS + " ORDER BY " + BDAcoesFacilHelper.COL_ID_FAV;
-        Log.d("DATABASE", "Consulta -> " + sqlConsulta);
         Cursor cursor = this.db.rawQuery(sqlConsulta,null);
 
         // Achou

@@ -1,16 +1,12 @@
 package br.com.adfm.acoesfacil.view.main;
 
-import android.content.Context;
 import android.content.Intent;
-import android.content.SharedPreferences;
 import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
 
 import br.com.adfm.acoesfacil.R;
-import de.keyboardsurfer.android.widget.crouton.Crouton;
-import de.keyboardsurfer.android.widget.crouton.Style;
 
 
 public class HomeActivity extends ActionBarActivity {
@@ -26,7 +22,6 @@ public class HomeActivity extends ActionBarActivity {
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
         getMenuInflater().inflate(R.menu.menu_home, menu);
-        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         return true;
     }
 
@@ -42,17 +37,20 @@ public class HomeActivity extends ActionBarActivity {
         //    return true;
         //}
 
+        Intent intent = null;
+
         switch (item.getItemId()) {
             case R.id.acao:
-                //TODO menu ação
+                intent = new Intent(this, AcoesActivity.class);
+                startActivity(intent);
                 return true;
             case R.id.favoritos:
-                setContentView(R.layout.activity_ativos_favoritos);
+                intent = new Intent(this, AtivosFavoritos.class);
+                startActivity(intent);
                 return true;
             case R.id.configuracao:
-                Intent conf = new Intent(this,ConfiguracaoActivity.class);
-                startActivity(conf);
-                //setContentView(R.layout.activity_configuracao);
+                intent = new Intent(this, ConfiguracaoActivity.class);
+                startActivity(intent);
                 return true;
             default:
                 return super.onOptionsItemSelected(item);

@@ -4,17 +4,17 @@
 
     <item android:id="@+id/acao"
         android:icon="@drawable/acoes1"
-        android:title="@string/menu_acao"
-        app:showAsAction="ifRoom"/>
+        android:title="@string/menu_acao"/>
+
         <!--app:showAsAction="always|withText"-->
     <item android:id="@+id/favoritos"
-        android:icon="@drawable/favorito"
+        android:icon="@drawable/ic_acao_favorita"
         android:title="@string/menu_favoritas"
-        app:showAsAction="ifRoom"/>
+        />
+
     <item android:id="@+id/configuracao"
         android:title="@string/menu_conf"
-        android:icon="@drawable/settings"
-        app:showAsAction="ifRoom"/>
+        />
 
 
 </menu>

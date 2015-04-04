@@ -10,10 +10,9 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.EditText;
+import android.widget.Toast;
 
 import br.com.adfm.acoesfacil.R;
-import de.keyboardsurfer.android.widget.crouton.Crouton;
-import de.keyboardsurfer.android.widget.crouton.Style;
 
 public class ConfiguracaoActivity extends ActionBarActivity {
 
@@ -85,6 +84,6 @@ public class ConfiguracaoActivity extends ActionBarActivity {
         editor.putFloat("valorImpRenda", Float.valueOf(impr.getText().toString()) );
         editor.commit();
 
-        Crouton.makeText(this,"Registro gravado com sucesso.", Style.CONFIRM ).show();
+        Toast.makeText(getApplicationContext(), R.string.registro_gravado_sucesso, Toast.LENGTH_SHORT).show();
     }
 }

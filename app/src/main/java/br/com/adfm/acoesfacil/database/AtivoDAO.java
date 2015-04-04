@@ -41,5 +41,4 @@ public interface AtivoDAO  {
      */
     public List<Ativo> listarFavoritos();
 
-
 }

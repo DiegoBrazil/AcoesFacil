@@ -16,7 +16,7 @@ public class BDAcoesFacilHelper extends SQLiteOpenHelper {
     /*
         Nome e versão do banco de dados
      */
-    private static final String BD_NOME ="DataBaseAcoesFacil";
+    private static final String BD_NOME ="DataBaseAcoesFacil.bd";
     private static final int BD_VERSAO = 1;
 
     /*

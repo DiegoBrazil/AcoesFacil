@@ -1,0 +1,36 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools" android:layout_width="match_parent"
+    android:layout_height="match_parent" android:paddingLeft="@dimen/activity_horizontal_margin"
+    android:paddingRight="@dimen/activity_horizontal_margin"
+    android:paddingTop="@dimen/activity_vertical_margin"
+    android:paddingBottom="@dimen/activity_vertical_margin"
+    android:background="@color/switch_thumb_normal_material_dark"
+    tools:context="br.com.adfm.acoesfacil.view.main.AcoesActivity">
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content">
+
+        <EditText
+            android:id="@+id/txtAtivo"
+            android:layout_width="200dp"
+            android:layout_height="wrap_content" >
+            <requestFocus />
+        </EditText>
+
+        <ImageButton
+            android:id="@+id/btnBuscar"
+            android:src="@drawable/ic_action_search"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+
+        <ImageView
+            android:id="@+id/imgFavorito"
+            android:src="@drawable/ic_acao_nao_favorita"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+
+    </LinearLayout>
+
+
+</RelativeLayout>

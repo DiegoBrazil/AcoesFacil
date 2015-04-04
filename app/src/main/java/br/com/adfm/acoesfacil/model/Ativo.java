@@ -24,7 +24,6 @@ public class Ativo {
     }
 
     public Ativo(String codigo, Double precoCompra, Double quantidadeCompra) {
-        this();
         this.codigo = codigo;
         this.precoCompra = precoCompra;
         this.quantidadeCompra = quantidadeCompra;
