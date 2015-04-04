@@ -47,7 +47,8 @@ tools:context="br.com.adfm.acoesfacil.view.main.ConfiguracaoActivity">
 <EditText android:id="@+id/valorCustodia"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:textSize="25dp" />
+    android:textSize="25dp"
+    android:inputType="numberDecimal"/>
 
 <TextView  android:textSize="25dp"
     android:layout_width="wrap_content"
@@ -57,7 +58,8 @@ tools:context="br.com.adfm.acoesfacil.view.main.ConfiguracaoActivity">
 <EditText android:id="@+id/valorImpRenda"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:textSize="25dp" />
+    android:textSize="25dp"
+    android:inputType="numberDecimal"/>
 
 <LinearLayout
     android:layout_width="match_parent"

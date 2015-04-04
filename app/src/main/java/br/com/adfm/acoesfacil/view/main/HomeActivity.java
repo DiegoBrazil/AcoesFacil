@@ -1,12 +1,16 @@
 package br.com.adfm.acoesfacil.view.main;
 
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
 
 import br.com.adfm.acoesfacil.R;
+import de.keyboardsurfer.android.widget.crouton.Crouton;
+import de.keyboardsurfer.android.widget.crouton.Style;
 
 
 public class HomeActivity extends ActionBarActivity {
@@ -46,9 +50,9 @@ public class HomeActivity extends ActionBarActivity {
                 setContentView(R.layout.activity_ativos_favoritos);
                 return true;
             case R.id.configuracao:
-                //Intent conf = new Intent(this,ConfiguracaoActivity.class);
-                //startActivity(conf);
-                setContentView(R.layout.activity_configuracao);
+                Intent conf = new Intent(this,ConfiguracaoActivity.class);
+                startActivity(conf);
+                //setContentView(R.layout.activity_configuracao);
                 return true;
             default:
                 return super.onOptionsItemSelected(item);
