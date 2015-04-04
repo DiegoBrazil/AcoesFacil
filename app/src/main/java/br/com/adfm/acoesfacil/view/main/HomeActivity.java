@@ -1,5 +1,6 @@
 package br.com.adfm.acoesfacil.view.main;
 
+import android.content.Intent;
 import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
 import android.view.Menu;
@@ -21,6 +22,7 @@ public class HomeActivity extends ActionBarActivity {
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
         getMenuInflater().inflate(R.menu.menu_home, menu);
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         return true;
     }
 
@@ -44,7 +46,9 @@ public class HomeActivity extends ActionBarActivity {
                 setContentView(R.layout.activity_ativos_favoritos);
                 return true;
             case R.id.configuracao:
-                //TODO menu conf
+                //Intent conf = new Intent(this,ConfiguracaoActivity.class);
+                //startActivity(conf);
+                setContentView(R.layout.activity_configuracao);
                 return true;
             default:
                 return super.onOptionsItemSelected(item);
