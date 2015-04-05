@@ -53,7 +53,7 @@ tools:context="br.com.adfm.acoesfacil.view.main.ConfiguracaoActivity">
 <TextView  android:textSize="25dp"
     android:layout_width="wrap_content"
     android:layout_height="wrap_content"
-    android:text="Imposto de renda" />
+    android:text="Imposto de renda (%)" />
 
 <EditText android:id="@+id/valorImpRenda"
     android:layout_width="match_parent"

@@ -1,6 +1,8 @@
 package br.com.adfm.acoesfacil.view.main;
 
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.database.Cursor;
 import android.os.Bundle;
 import android.support.v7.app.ActionBarActivity;
@@ -44,11 +46,16 @@ public class AtivosFavoritos extends ActionBarActivity {
     private List<Map<String, String>> listAtivoFavorito;
     private ArrayList<String> listAtivosFavoritos_Encontrados = new ArrayList<String>();
     private Double valorTot =0d;
+    Float cor = 0f;
+    Float emo = 0f;
+    Float cus = 0f;
+    Float ir = 0f;
 
 
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_ativos_favoritos);
+        buscarConfiguracao();
     }
 
     private void showToast(String message) {
@@ -84,65 +91,17 @@ public class AtivosFavoritos extends ActionBarActivity {
                 return super.onOptionsItemSelected(item);
         }
     }
-    /**
-     * Carregar todos os favoritos na ListView.
-     * @since 04/04/2015.
-     */
-    private void carregarTodosFavoritosNaListView() {
-        listAtivoFavorito = this.getFavoritosList();
-
-        String[] from = new String[] {
-                BDAcoesFacilHelper.COL_ID_FAV,
-                BDAcoesFacilHelper.COL_QTD_COMPRA_FAV,
-                BDAcoesFacilHelper.COL_VLR_COMPRA_FAV
-        };
-
-        int[] to = new int[] {
-                R.id.textAtivo,
-                R.id.textQtdeCompra,
-                R.id.textVlrCompra
-        };
-
-        dataAdapter = new SimpleAdapter(this, listAtivoFavorito, R.layout.row_ativo_favorito, from, to);
-        listView = (ListView) findViewById(R.id.ativosList);
-        listView.setAdapter(dataAdapter);
-    }
-
 
     @Override
     protected void onPause() {
         super.onPause();
     }
 
-    /**
-     * Carrega a lista objectos.
-     * @return List<String>
-     */
-    private List<Map<String, String>> getFavoritosList() {
-        ativoDAO = new AtivoDAOImpl(this);
-        List<Ativo> listAtivoFavorito = ativoDAO.listarFavoritos();
-
-        List<Map<String, String>> lista = new ArrayList<Map<String, String>>();
-        for (int i = 0; i < listAtivoFavorito.size(); i++) {
-
-            Map<String, String> m = new HashMap<String, String>();
-            m.put(BDAcoesFacilHelper.COL_ID_FAV, listAtivoFavorito.get(i).getCodigo());
-            m.put(BDAcoesFacilHelper.COL_QTD_COMPRA_FAV, listAtivoFavorito.get(i).getQuantidadeCompra().toString());
-            m.put(BDAcoesFacilHelper.COL_VLR_COMPRA_FAV, listAtivoFavorito.get(i).getPrecoCompra().toString());
-
-            lista.add(m);
-            valorTot =+ listAtivoFavorito.get(i).getQuantidadeCompra() * 1.7; //valor atual
-        }
-        TextView te = (TextView)findViewById(R.id.valorTotalLista);
-        te.setText(valorTot.toString());
-        return lista;
-
-    }
-
     @Override
     protected void onStart(){
-        this.carregarTodosFavoritosNaListView();
 
+        valorTot = 0d;
+        this.carregarTodosFavoritosNaListView();
         /**
          * Chamada para a tela de edição do favorito selecionado (clicado) na ListView
          * Diego vc pode usar esta parte aqui.
@@ -174,6 +133,74 @@ public class AtivosFavoritos extends ActionBarActivity {
                                         }
         );
         super.onStart();
+
     }
+
+    private void buscarConfiguracao(){
+        SharedPreferences sharedPref = getSharedPreferences("activity_configuracao",Context.MODE_PRIVATE);
+        cor = sharedPref.getFloat("valorCorretagem", 0);
+        emo = sharedPref.getFloat("valorEmolumento", 0);
+        cus = sharedPref.getFloat("valorCustodia", 0);
+        ir = sharedPref.getFloat("valorImpRenda", 0);
+    }
+
+    /**
+     * Carregar todos os favoritos na ListView.
+     * @since 04/04/2015.
+     */
+    private void carregarTodosFavoritosNaListView() {
+        listAtivoFavorito = this.getFavoritosList();
+
+        String[] from = new String[] {
+                BDAcoesFacilHelper.COL_ID_FAV,
+                BDAcoesFacilHelper.COL_QTD_COMPRA_FAV,
+                BDAcoesFacilHelper.COL_VLR_COMPRA_FAV
+        };
+
+        int[] to = new int[] {
+                R.id.textAtivo,
+                R.id.textQtdeCompra,
+                R.id.textVlrCompra
+        };
+
+        dataAdapter = new SimpleAdapter(this, listAtivoFavorito, R.layout.row_ativo_favorito, from, to);
+        listView = (ListView) findViewById(R.id.ativosList);
+        listView.setAdapter(dataAdapter);
+    }
+
+    /**
+     * Carrega a lista objectos.
+     * @return List<String>
+     */
+    private List<Map<String, String>> getFavoritosList() {
+        ativoDAO = new AtivoDAOImpl(this);
+        List<Ativo> listAtivoFavorito = ativoDAO.listarFavoritos();
+
+        List<Map<String, String>> lista = new ArrayList<Map<String, String>>();
+        for (int i = 0; i < listAtivoFavorito.size(); i++) {
+
+            Map<String, String> m = new HashMap<String, String>();
+            m.put(BDAcoesFacilHelper.COL_ID_FAV, listAtivoFavorito.get(i).getCodigo());
+            m.put(BDAcoesFacilHelper.COL_QTD_COMPRA_FAV, listAtivoFavorito.get(i).getQuantidadeCompra().toString());
+            m.put(BDAcoesFacilHelper.COL_VLR_COMPRA_FAV, listAtivoFavorito.get(i).getPrecoCompra().toString());
+
+            lista.add(m);
+            setarValorTotal(listAtivoFavorito.get(i).getQuantidadeCompra());
+
+        }
+        TextView te = (TextView)findViewById(R.id.valorTotalLista);
+        te.setText("R$ "+valorTot.toString());
+        return lista;
+    }
+
+    private void setarValorTotal(Double qtd){
+        valorTot = valorTot+ qtd * 1.7; //valor atual
+        valorTot = valorTot-emo;
+        if(ir!=0){
+            valorTot = valorTot- ((valorTot *ir)/100);
+        }
+        valorTot= valorTot-cus;
+    }
+
 
 }

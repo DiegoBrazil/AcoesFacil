@@ -16,12 +16,14 @@ import br.com.adfm.acoesfacil.R;
 
 public class ConfiguracaoActivity extends ActionBarActivity {
 
+    private SharedPreferences sharedPref;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_configuracao);
 
-        SharedPreferences sharedPref = getPreferences(Context.MODE_PRIVATE);
+        sharedPref = getSharedPreferences("activity_configuracao",Context.MODE_PRIVATE);
         Float cor = sharedPref.getFloat("valorCorretagem", 0);
         Float emo = sharedPref.getFloat("valorEmolumento", 0);
         Float cus = sharedPref.getFloat("valorCustodia", 0);
@@ -75,8 +77,8 @@ public class ConfiguracaoActivity extends ActionBarActivity {
         EditText emol = (EditText)findViewById(R.id.valorEmolumento);
         EditText impr = (EditText)findViewById(R.id.valorImpRenda);
 
-        SharedPreferences shared = getPreferences(Context.MODE_PRIVATE);
-        SharedPreferences.Editor editor = shared.edit();
+        //SharedPreferences shared = getPreferences(Context.MODE_PRIVATE);
+        SharedPreferences.Editor editor = sharedPref.edit();
         editor.putFloat("valorCorretagem", Float.valueOf(corr.getText().toString()) );
         editor.putFloat("valorEmolumento", Float.valueOf(cust.getText().toString()) );
         editor.putFloat("valorCustodia", Float.valueOf(emol.getText().toString()) );
