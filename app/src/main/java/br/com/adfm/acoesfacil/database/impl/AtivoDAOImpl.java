@@ -32,7 +32,7 @@ public class AtivoDAOImpl implements AtivoDAO {
             Double qtd = cursor.getDouble(cursor.getColumnIndex(BDAcoesFacilHelper.COL_QTD_COMPRA_FAV));
             Double vlr = cursor.getDouble(cursor.getColumnIndex(BDAcoesFacilHelper.COL_VLR_COMPRA_FAV));
 
-            ativo = new Ativo(codigo, qtd, vlr);
+            ativo = new Ativo(codigo, vlr, qtd);
             Log.d("DATABASE", "Ativo -> " + ativo.getCodigo());
         }
 
