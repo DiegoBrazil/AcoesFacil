@@ -11,6 +11,7 @@
     <string name="title_activity_acoes">Consulta Ativos</string>
     <string name="title_activity_favoritos">Ativos Favoritos</string>
     <string name="title_activity_configuracao">Configurações</string>
+    <string name="title_activity_edicaoFavorito">Edição Favorito</string>
 
     <string name="acao_msg_ativo_vazio">Por favor informe o ativo.</string>
     <string name="registro_gravado_sucesso">Registro gravado com sucesso.</string>

@@ -34,6 +34,11 @@
             android:name=".view.main.ConfiguracaoActivity"
             android:label="@string/title_activity_configuracao" >
         </activity>
+
+        <activity
+            android:name = ".view.main.EdicaoAtivoActivity"
+            android:label="@string/title_activity_edicaoFavorito">
+         </activity>
     </application>
 
 </manifest>

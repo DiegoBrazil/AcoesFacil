@@ -1,11 +1,13 @@
 package br.com.adfm.acoesfacil.view.main;
 
+import android.content.Intent;
 import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
 
 import br.com.adfm.acoesfacil.R;
+import br.com.adfm.acoesfacil.database.BDAcoesFacilHelper;
 
 public class EdicaoAtivoActivity extends ActionBarActivity {
 
@@ -13,6 +15,11 @@ public class EdicaoAtivoActivity extends ActionBarActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_edicao_ativo);
+
+        Intent i = getIntent();
+        String ativo = i.getStringExtra(BDAcoesFacilHelper.COL_ID_FAV);
+        Double qtdeCompra = i.getDoubleExtra(BDAcoesFacilHelper.COL_QTD_COMPRA_FAV, 0.00);
+        Double vlrCompra   = i.getDoubleExtra(BDAcoesFacilHelper.COL_VLR_COMPRA_FAV, 0.00);
     }
 
 
