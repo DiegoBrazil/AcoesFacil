@@ -49,6 +49,7 @@ public class AtivosFavoritos extends ActionBarActivity {
 
         /**
          * Chamada para a tela de edição do favorito selecionado (clicado) na ListView
+         * Diego vc pode usar esta parte aqui.
          */
         listView.setOnItemClickListener(new OnItemClickListener() {
                 @Override
