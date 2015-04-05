@@ -1,15 +1,47 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:orientation="vertical"
     xmlns:tools="http://schemas.android.com/tools"
     tools:context="br.com.adfm.acoesfacil.view.main.AtivosFavoritos">
 
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        android:orientation="horizontal"
+        xmlns:tools="http://schemas.android.com/tools"
+        tools:context="br.com.adfm.acoesfacil.view.main.AtivosFavoritos">
+    <TextView android:id="@+id/labelValorTotal"
+        android:text="Valor Total"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="25dp"
+        android:paddingTop="10dp"
+        />
+    <TextView android:id="@+id/valorTotalLista"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="25dp"
+        android:paddingTop="10dp"
+        />
+</LinearLayout>
+
     <ListView
         android:id="@+id/ativosList"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_width="wrap_content"
+        android:layout_height="500dp"
         android:divider="@android:color/transparent"
         android:dividerHeight="2sp"
-        android:background="#ff28a7ff" />
+        android:background="#ff28a7ff"
+        />
+
+    <!--<View android:id="@+id/firstDivider"
+        android:layout_height="2dp"
+        android:layout_width="fill_parent"
+        android:background="#000080" /> -->
+
+
+
+
 
 </LinearLayout>

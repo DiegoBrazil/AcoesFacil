@@ -12,6 +12,7 @@ import android.widget.AdapterView;
 import android.widget.EditText;
 import android.widget.ListView;
 import android.widget.SimpleAdapter;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import java.util.ArrayList;
@@ -42,44 +43,12 @@ public class AtivosFavoritos extends ActionBarActivity {
     private EditText et;//
     private List<Map<String, String>> listAtivoFavorito;
     private ArrayList<String> listAtivosFavoritos_Encontrados = new ArrayList<String>();
+    private Double valorTot =0d;
 
 
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_ativos_favoritos);
-
-        this.carregarTodosFavoritosNaListView();
-
-        /**
-         * Chamada para a tela de edição do favorito selecionado (clicado) na ListView
-         * Diego vc pode usar esta parte aqui.
-         */
-        listView.setOnItemClickListener(new OnItemClickListener() {
-                @Override
-                public void onItemClick(AdapterView<?> adapterView, View view, int position, long index) {
-                    //Pegar o item clicado e suas informações para passar para a próxima intent
-                    HashMap<String,String> o = (HashMap) listView.getItemAtPosition(position);
-                   // EventBus.getDefault().postSticky(new Ativo(o.get("COL_ID_FAV"),
-                   //                                             Double.valueOf(o.get("COL_VLR_COMPRA_FAV")),
-                   //                                             Double.valueOf(o.get("COL_QTD_COMPRA_FAV"))));
-
-
-                    String ativoFavorito = o.get(BDAcoesFacilHelper.COL_ID_FAV);
-                    Double quantidade =  Double.valueOf(o.get(BDAcoesFacilHelper.COL_QTD_COMPRA_FAV));
-                    Double valor = Double.valueOf(o.get(BDAcoesFacilHelper.COL_VLR_COMPRA_FAV));
-
-                    Intent intent = new Intent(getApplicationContext(), EdicaoAtivoActivity.class);
-
-                    Bundle bundle = new Bundle();
-                    bundle.putString(BDAcoesFacilHelper.COL_ID_FAV, ativoFavorito);
-                    bundle.putDouble(BDAcoesFacilHelper.COL_QTD_COMPRA_FAV, quantidade);
-                    bundle.putDouble(BDAcoesFacilHelper.COL_VLR_COMPRA_FAV, valor);
-
-                    intent.putExtras(bundle);
-                    startActivity(intent);
-                }
-            }
-        );
     }
 
 
@@ -141,6 +110,11 @@ public class AtivosFavoritos extends ActionBarActivity {
     }
 
 
+    @Override
+    protected void onPause() {
+        super.onPause();
+    }
+
     /**
      * Carrega a lista objectos.
      * @return List<String>
@@ -158,8 +132,49 @@ public class AtivosFavoritos extends ActionBarActivity {
             m.put(BDAcoesFacilHelper.COL_VLR_COMPRA_FAV, listAtivoFavorito.get(i).getPrecoCompra().toString());
 
             lista.add(m);
+            valorTot =+ listAtivoFavorito.get(i).getQuantidadeCompra() * 1.7; //valor atual
         }
+        TextView te = (TextView)findViewById(R.id.valorTotalLista);
+        te.setText(valorTot.toString());
         return lista;
+
+    }
+
+    @Override
+    protected void onStart(){
+        this.carregarTodosFavoritosNaListView();
+
+        /**
+         * Chamada para a tela de edição do favorito selecionado (clicado) na ListView
+         * Diego vc pode usar esta parte aqui.
+         */
+        listView.setOnItemClickListener(new OnItemClickListener() {
+                                            @Override
+                                            public void onItemClick(AdapterView<?> adapterView, View view, int position, long index) {
+                                                //Pegar o item clicado e suas informações para passar para a próxima intent
+                                                HashMap<String,String> o = (HashMap) listView.getItemAtPosition(position);
+                                                // EventBus.getDefault().postSticky(new Ativo(o.get("COL_ID_FAV"),
+                                                //                                             Double.valueOf(o.get("COL_VLR_COMPRA_FAV")),
+                                                //                                             Double.valueOf(o.get("COL_QTD_COMPRA_FAV"))));
+
+
+                                                String ativoFavorito = o.get(BDAcoesFacilHelper.COL_ID_FAV);
+                                                Double quantidade =  Double.valueOf(o.get(BDAcoesFacilHelper.COL_QTD_COMPRA_FAV));
+                                                Double valor = Double.valueOf(o.get(BDAcoesFacilHelper.COL_VLR_COMPRA_FAV));
+
+                                                Intent intent = new Intent(getApplicationContext(), EdicaoAtivoActivity.class);
+
+                                                Bundle bundle = new Bundle();
+                                                bundle.putString(BDAcoesFacilHelper.COL_ID_FAV, ativoFavorito);
+                                                bundle.putDouble(BDAcoesFacilHelper.COL_QTD_COMPRA_FAV, quantidade);
+                                                bundle.putDouble(BDAcoesFacilHelper.COL_VLR_COMPRA_FAV, valor);
+
+                                                intent.putExtras(bundle);
+                                                startActivity(intent);
+                                            }
+                                        }
+        );
+        super.onStart();
     }
 
 }
