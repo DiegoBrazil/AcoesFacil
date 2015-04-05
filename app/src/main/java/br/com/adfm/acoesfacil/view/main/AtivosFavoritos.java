@@ -51,7 +51,6 @@ public class AtivosFavoritos extends ActionBarActivity {
         setContentView(R.layout.activity_ativos_favoritos);
     }
 
-
     private void showToast(String message) {
         Toast.makeText(this, message, Toast.LENGTH_LONG).show();
     }

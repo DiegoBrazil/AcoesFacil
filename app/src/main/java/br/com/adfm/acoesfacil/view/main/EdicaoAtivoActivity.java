@@ -5,16 +5,20 @@ import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
 import android.widget.TextView;
 
 import br.com.adfm.acoesfacil.R;
+import br.com.adfm.acoesfacil.database.AtivoDAO;
 import br.com.adfm.acoesfacil.database.BDAcoesFacilHelper;
+import br.com.adfm.acoesfacil.database.impl.AtivoDAOImpl;
 import br.com.adfm.acoesfacil.model.Ativo;
-import de.greenrobot.event.EventBus;
 
 public class EdicaoAtivoActivity extends ActionBarActivity {
 
-
+    TextView nomeAtivo;
+    TextView precoCompra;
+    TextView quantidade;
 
     @Override
     public void onStart() {
@@ -33,20 +37,18 @@ public class EdicaoAtivoActivity extends ActionBarActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_edicao_ativo);
 
-      // Ativo myPOJO = (Ativo) EventBus.getDefault().removeStickyEvent(Ativo.class);
+        // Ativo myPOJO = (Ativo) EventBus.getDefault().removeStickyEvent(Ativo.class);
 
         Intent i = getIntent();
-        String ativo = i.getStringExtra(BDAcoesFacilHelper.COL_ID_FAV);
+        String codigoAtivo = i.getStringExtra(BDAcoesFacilHelper.COL_ID_FAV);
         Double qtdeCompra = i.getDoubleExtra(BDAcoesFacilHelper.COL_QTD_COMPRA_FAV, 0.00);
-        Double vlrCompra   = i.getDoubleExtra(BDAcoesFacilHelper.COL_VLR_COMPRA_FAV, 0.00);
+        Double precoCompra = i.getDoubleExtra(BDAcoesFacilHelper.COL_VLR_COMPRA_FAV, 0.00);
 
-        setContentView(R.layout.activity_edicao_ativo);
-
-        TextView nomeAtivo = (TextView) findViewById(R.id.idNomeAtivo);
-        nomeAtivo.setText(ativo);
-        TextView precoCompra = (TextView) findViewById(R.id.idPrecoCompra);
-        precoCompra.setText(vlrCompra.toString());
-        TextView quantidade = (TextView) findViewById(R.id.idQuantidade);
+        nomeAtivo = (TextView) findViewById(R.id.idNomeAtivo);
+        nomeAtivo.setText(codigoAtivo);
+        this.precoCompra = (TextView) findViewById(R.id.idPrecoCompra);
+        this.precoCompra.setText(precoCompra.toString());
+        quantidade = (TextView) findViewById(R.id.idQuantidade);
         quantidade.setText(qtdeCompra.toString());
     }
 
@@ -79,5 +81,21 @@ public class EdicaoAtivoActivity extends ActionBarActivity {
             default:
                 return super.onOptionsItemSelected(item);
         }
+    }
+
+    /**
+     * Método responsável por fechar a EdicaoAtivoActivity e voltar para a AtivosFavoritos
+     */
+    public void cancelar(View v) {
+        finish();
+    }
+
+    public void gravarAlteracao(View v) {
+        AtivoDAO dao = new AtivoDAOImpl(this);
+        Ativo ativo = new Ativo(nomeAtivo.getText().toString(),
+                                Double.valueOf(precoCompra.getText().toString()),
+                                Double.valueOf(quantidade.getText().toString()));
+        dao.alterar(ativo);
+        finish();
     }
 }

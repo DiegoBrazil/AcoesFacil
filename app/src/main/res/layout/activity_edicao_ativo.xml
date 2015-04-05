@@ -53,12 +53,14 @@
             android:layout_width="120dp"
             android:layout_height="wrap_content"
             android:layout_marginRight="10dp"
-            android:text="Cancelar" />
+            android:text="Cancelar"
+            android:onClick="cancelar"/>
 
         <Button
             android:layout_width="120dp"
             android:layout_height="wrap_content"
-            android:text="OK" />
+            android:text="OK"
+            android:onClick="gravarAlteracao"/>
     </LinearLayout>
 
 </LinearLayout>
