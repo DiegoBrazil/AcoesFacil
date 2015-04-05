@@ -1,7 +1,6 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@android:color/transparent"
     xmlns:tools="http://schemas.android.com/tools"
     tools:context="br.com.adfm.acoesfacil.view.main.AtivosFavoritos">
 
@@ -11,6 +10,6 @@
         android:layout_height="match_parent"
         android:divider="@android:color/transparent"
         android:dividerHeight="2sp"
-        />
+        android:background="#ff28a7ff" />
 
 </LinearLayout>
