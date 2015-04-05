@@ -14,13 +14,12 @@
         android:layout_height="wrap_content"
         android:layout_gravity="center_horizontal"
         android:text="Edição de Ativo"
-        android:textSize="50dp" />
+        android:textSize="40dp" />
 
-    <TextView
+    <TextView android:id="@+id/idNomeAtivo"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center_horizontal"
-        android:text="Nome do ativo"
         android:textSize="30dp" />
 
     <TextView
@@ -29,17 +28,18 @@
         android:text="Quantidade"
         android:textSize="25dp" />
 
-    <EditText
+    <EditText android:id="@+id/idQuantidade"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:textSize="25dp" />
 
-    <TextView  android:textSize="25dp"
+    <TextView
+        android:textSize="25dp"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Preço de compra" />
 
-    <EditText
+    <EditText android:id="@+id/idPrecoCompra"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:textSize="25dp" />

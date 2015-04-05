@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.database.Cursor;
 import android.os.Bundle;
 import android.support.v7.app.ActionBarActivity;
+import android.util.Log;
 import android.view.Menu;
 import android.view.View;
 import android.widget.AdapterView;
@@ -22,6 +23,7 @@ import br.com.adfm.acoesfacil.database.AtivoDAO;
 import br.com.adfm.acoesfacil.database.BDAcoesFacilHelper;
 import br.com.adfm.acoesfacil.database.impl.AtivoDAOImpl;
 import br.com.adfm.acoesfacil.model.Ativo;
+import de.greenrobot.event.EventBus;
 
 import static android.app.PendingIntent.getActivity;
 import static android.widget.AdapterView.OnItemClickListener;
@@ -55,11 +57,15 @@ public class AtivosFavoritos extends ActionBarActivity {
                 @Override
                 public void onItemClick(AdapterView<?> adapterView, View view, int position, long index) {
                     //Pegar o item clicado e suas informações para passar para a próxima intent
-                    Cursor cursor = (Cursor) listView.getItemAtPosition(position);
+                    HashMap<String,String> o = (HashMap) listView.getItemAtPosition(position);
+                   // EventBus.getDefault().postSticky(new Ativo(o.get("COL_ID_FAV"),
+                   //                                             Double.valueOf(o.get("COL_VLR_COMPRA_FAV")),
+                   //                                             Double.valueOf(o.get("COL_QTD_COMPRA_FAV"))));
 
-                    String ativoFavorito = cursor.getString(cursor.getColumnIndexOrThrow(BDAcoesFacilHelper.COL_ID_FAV));
-                    Double quantidade = cursor.getDouble(cursor.getColumnIndexOrThrow(BDAcoesFacilHelper.COL_QTD_COMPRA_FAV));
-                    Double valor = cursor.getDouble(cursor.getColumnIndexOrThrow(BDAcoesFacilHelper.COL_VLR_COMPRA_FAV));
+
+                    String ativoFavorito = o.get(BDAcoesFacilHelper.COL_ID_FAV);
+                    Double quantidade =  Double.valueOf(o.get(BDAcoesFacilHelper.COL_QTD_COMPRA_FAV));
+                    Double valor = Double.valueOf(o.get(BDAcoesFacilHelper.COL_VLR_COMPRA_FAV));
 
                     Intent intent = new Intent(getApplicationContext(), EdicaoAtivoActivity.class);
 
@@ -122,7 +128,7 @@ public class AtivosFavoritos extends ActionBarActivity {
         ativoDAO = new AtivoDAOImpl(this);
         List<Ativo> listAtivoFavorito = ativoDAO.listarFavoritos();
 
-        List<Map<String, String>> l = new ArrayList<Map<String, String>>();
+        List<Map<String, String>> lista = new ArrayList<Map<String, String>>();
         for (int i = 0; i < listAtivoFavorito.size(); i++) {
 
             Map<String, String> m = new HashMap<String, String>();
@@ -130,9 +136,9 @@ public class AtivosFavoritos extends ActionBarActivity {
             m.put(BDAcoesFacilHelper.COL_QTD_COMPRA_FAV, listAtivoFavorito.get(i).getQuantidadeCompra().toString());
             m.put(BDAcoesFacilHelper.COL_VLR_COMPRA_FAV, listAtivoFavorito.get(i).getPrecoCompra().toString());
 
-            l.add(m);
+            lista.add(m);
         }
-        return l;
+        return lista;
     }
 
 }
