@@ -6,6 +6,7 @@ import android.os.Bundle;
 import android.support.v7.app.ActionBarActivity;
 import android.util.Log;
 import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.EditText;
@@ -88,13 +89,33 @@ public class AtivosFavoritos extends ActionBarActivity {
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
-        // Inflate the menu; this adds items to the action bar if it is present.
         getMenuInflater().inflate(R.menu.menu_home, menu);
-        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        //getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         return true;
     }
 
 
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        Intent intent = null;
+
+        switch (item.getItemId()) {
+            case R.id.acao:
+                intent = new Intent(this, AcoesActivity.class);
+                startActivity(intent);
+                return true;
+            case R.id.favoritos:
+                intent = new Intent(this, AtivosFavoritos.class);
+                startActivity(intent);
+                return true;
+            case R.id.configuracao:
+                intent = new Intent(this, ConfiguracaoActivity.class);
+                startActivity(intent);
+                return true;
+            default:
+                return super.onOptionsItemSelected(item);
+        }
+    }
     /**
      * Carregar todos os favoritos na ListView.
      * @since 04/04/2015.

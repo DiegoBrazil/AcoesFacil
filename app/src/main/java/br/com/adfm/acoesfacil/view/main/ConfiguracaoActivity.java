@@ -26,7 +26,6 @@ public class ConfiguracaoActivity extends ActionBarActivity {
         Float emo = sharedPref.getFloat("valorEmolumento", 0);
         Float cus = sharedPref.getFloat("valorCustodia", 0);
         Float ir = sharedPref.getFloat("valorImpRenda", 0);
-        //Crouton.makeText(this, "Valor gravado: "+highScore, Style.CONFIRM).show();
 
         EditText corr = (EditText)findViewById(R.id.valorCorretagem);
         corr.setText(cor.toString());
@@ -44,26 +43,26 @@ public class ConfiguracaoActivity extends ActionBarActivity {
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
         getMenuInflater().inflate(R.menu.menu_home, menu);
-        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        //getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         return true;
     }
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
-        // Handle action bar item clicks here. The action bar will
-        // automatically handle clicks on the Home/Up button, so long
-        // as you specify a parent activity in AndroidManifest.xml.
+        Intent intent = null;
+
         switch (item.getItemId()) {
             case R.id.acao:
-                //TODO menu ação
+                intent = new Intent(this, AcoesActivity.class);
+                startActivity(intent);
                 return true;
             case R.id.favoritos:
-                setContentView(R.layout.activity_ativos_favoritos);
+                intent = new Intent(this, AtivosFavoritos.class);
+                startActivity(intent);
                 return true;
             case R.id.configuracao:
-                Intent conf = new Intent(this,ConfiguracaoActivity.class);
-                startActivity(conf);
-                //setContentView(R.layout.activity_configuracao);
+                intent = new Intent(this, ConfiguracaoActivity.class);
+                startActivity(intent);
                 return true;
             default:
                 return super.onOptionsItemSelected(item);
