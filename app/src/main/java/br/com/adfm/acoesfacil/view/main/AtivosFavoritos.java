@@ -38,6 +38,7 @@ import static android.widget.AdapterView.OnItemClickListener;
  */
 public class AtivosFavoritos extends ActionBarActivity {
 
+
     private SimpleAdapter dataAdapter;
     private AtivoDAO ativoDAO;
     private View thisView;
@@ -55,7 +56,6 @@ public class AtivosFavoritos extends ActionBarActivity {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_ativos_favoritos);
-        buscarConfiguracao();
     }
 
     private void showToast(String message) {
@@ -99,7 +99,7 @@ public class AtivosFavoritos extends ActionBarActivity {
 
     @Override
     protected void onStart(){
-
+        buscarConfiguracao();
         valorTot = 0d;
         this.carregarTodosFavoritosNaListView();
         /**
