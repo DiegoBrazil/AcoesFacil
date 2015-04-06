@@ -17,9 +17,13 @@ import android.widget.SimpleAdapter;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import java.text.DecimalFormat;
+import java.text.DecimalFormatSymbols;
+import java.text.NumberFormat;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
+import java.util.Locale;
 import java.util.Map;
 
 import br.com.adfm.acoesfacil.R;
@@ -137,7 +141,7 @@ public class AtivosFavoritos extends ActionBarActivity {
     }
 
     private void buscarConfiguracao(){
-        SharedPreferences sharedPref = getSharedPreferences("activity_configuracao",Context.MODE_PRIVATE);
+        SharedPreferences sharedPref = getSharedPreferences("activity_configuracao", Context.MODE_PRIVATE);
         cor = sharedPref.getFloat("valorCorretagem", 0);
         emo = sharedPref.getFloat("valorEmolumento", 0);
         cus = sharedPref.getFloat("valorCustodia", 0);
@@ -189,7 +193,10 @@ public class AtivosFavoritos extends ActionBarActivity {
 
         }
         TextView te = (TextView)findViewById(R.id.valorTotalLista);
-        te.setText("R$ "+valorTot.toString());
+        NumberFormat df = NumberFormat.getCurrencyInstance(new Locale("pt", "BR"));
+        //DecimalFormat df = new DecimalFormat("#,##0.00");
+        //df.setDecimalFormatSymbols( DecimalFormatSymbols.getInstance(new Locale("pt", "BR")));
+        te.setText(" "+df.format(valorTot));
         return lista;
     }
 
