@@ -1,5 +1,7 @@
 package br.com.adfm.acoesfacil.service;
 
+import android.util.Log;
+
 import org.xmlpull.v1.XmlPullParser;
 import org.xmlpull.v1.XmlPullParserException;
 import org.xmlpull.v1.XmlPullParserFactory;
@@ -20,14 +22,32 @@ public class ConsultaAcoesXML implements ConsultaAcoes {
 
     private String link;
 
+    public ConsultaAcoesXML(String link) {
+        this.link = link;
+    }
+
+    public void setLink(String link) {
+        this.link = link;
+    }
+
     @Override
-    public Ativo consultar(String codigo) {
+    public Ativo consultar() {
+        HttpURLConnection conn = null;
         try {
-            HttpURLConnection conn = getHttpURLConnection();
-            if (conn != null) {
-                InputStream is = conn.getInputStream();
-                Ativo ativo = converterStreamParaAtivo(is);
-            }
+            String strUrl = this.link;
+            Log.d("Consulta Acoes", strUrl);
+
+            String xml = null;
+            URL url = new URL(strUrl);
+
+            conn = (HttpURLConnection)url.openConnection();
+            //conn.setReadTimeout(10000 /* milliseconds */);
+            //conn.setConnectTimeout(15000 /* milliseconds */);
+            conn.setRequestMethod("GET");
+            conn.setDoInput(true);
+            conn.connect();
+
+            return converterParaAtivo(conn.getInputStream());
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -35,59 +55,97 @@ public class ConsultaAcoesXML implements ConsultaAcoes {
         return null;
     }
 
-    private static Ativo converterStreamParaAtivo(InputStream is) {
+    private static Ativo converterParaAtivo(InputStream is) {
         Ativo ativo = null;
+        XmlPullParserFactory factory = null;
+        XmlPullParser parser = null;
+
         try {
-            XmlPullParserFactory factory = XmlPullParserFactory.newInstance();
+            factory = XmlPullParserFactory.newInstance();
             factory.setNamespaceAware(true);
+            parser = factory.newPullParser();
 
-            XmlPullParser parser = factory.newPullParser();
+            // Carrega com o stream
             parser.setInput(is, null);
-            int evento = parser.getEventType();
 
-            while(evento != XmlPullParser.END_DOCUMENT){
-                String tagNome = parser.getName();
+            // Pega o tipo do evento
+            int eventType = parser.getEventType();
 
+            // Pecorre todas as tags do documento
+            while (eventType != XmlPullParser.END_DOCUMENT) {
+
+                if(eventType == XmlPullParser.START_DOCUMENT) {
+                    Log.d("XML -> LOG", "START DOC ");
+                } else if(eventType == XmlPullParser.END_DOCUMENT) {
+                    Log.d("XML -> LOG", "End DOC");
+                } else if(eventType == XmlPullParser.START_TAG) {
+                    String tagName = parser.getName();
+                    Log.d("XML -> LOG", "Start tag " + tagName);
+
+                    String codigo = parser.getAttributeValue(null,"Codigo");
+                    Log.d("XML -> LOG", "Codigo" + codigo);
+                    String nome = parser.getAttributeValue(null,"Nome");
+                    String data = parser.getAttributeValue(null,"Data");
+                    Log.d("XML -> LOG", "Data" + data);
+                    String abertura = parser.getAttributeValue(null,"Abertura");
+                    String minimo = parser.getAttributeValue(null,"Minimo");
+                    String maximo = parser.getAttributeValue(null,"Maximo");
+                    String medio = parser.getAttributeValue(null,"Medio");
+                    String ultimo = parser.getAttributeValue(null,"Ultimo");
+                    String oscilacao = parser.getAttributeValue(null,"Oscilacao");
+
+                    ativo = new Ativo(codigo, 0d,0d);
+                    if (abertura != null) {
+                        ativo.setAbertura(Double.parseDouble(abertura.replace(",", ".")));
+                    }
+                    if (minimo != null){
+                        ativo.setMinimo(Double.parseDouble(minimo.replace(",", ".")));
+                    }
+                }else if(eventType == XmlPullParser.END_TAG) {
+                    System.out.println("End tag "+parser.getName());
+                } else if(eventType == XmlPullParser.TEXT) {
+                    System.out.println("Text " + parser.getText());
+                }
+
+                eventType = parser.next();
             }
+
         } catch (XmlPullParserException e) {
             e.printStackTrace();
-        } finally {
-
+        } catch (IOException e) {
+            e.printStackTrace();
         }
 
         return ativo;
     }
 
-    private HttpURLConnection getHttpURLConnection() throws IOException {
-        URL url = new URL(link);
-        HttpURLConnection conn = (HttpURLConnection) url.openConnection();
+    private static String convertStreamToString(InputStream is) {
 
-        conn.setReadTimeout(10000);
-        conn.setConnectTimeout(15000);
-        conn.setRequestMethod("GET");
-        conn.setDoInput(true);
-        conn.connect();
+        BufferedReader reader = new BufferedReader(new InputStreamReader(is));
+        StringBuilder sb = new StringBuilder();
 
-        return conn;
-    }
-
-    private String converterStreamParaString(final InputStream is) {
-        StringBuffer retorno = new StringBuffer();
-
-        if (is == null){
-            throw new IllegalArgumentException("Stream inválido");
-        } else {
-            try {
-                BufferedReader br = new BufferedReader(new InputStreamReader(is));
-                String linha = null;
-                while((linha = br.readLine()) != null) {
-                    retorno.append(linha);
+        String line = null;
+        try {
+            while ((line = reader.readLine()) != null) {
+                if (!line.contains("?xml version")){
+                    sb.append(line);
                 }
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
+        } finally {
+            try {
+                is.close();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+            try {
+                reader.close();
             } catch (IOException e) {
                 e.printStackTrace();
             }
         }
 
-        return retorno.toString();
+        return sb.toString();
     }
 }

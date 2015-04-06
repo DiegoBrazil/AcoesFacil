@@ -8,5 +8,5 @@ import br.com.adfm.acoesfacil.model.Ativo;
  */
 public interface ConsultaAcoes {
 
-    public Ativo consultar(String codigo);
+    public Ativo consultar();
 }

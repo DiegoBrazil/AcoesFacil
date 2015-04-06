@@ -16,13 +16,16 @@ import br.com.adfm.acoesfacil.R;
 import br.com.adfm.acoesfacil.database.AtivoDAO;
 import br.com.adfm.acoesfacil.database.impl.AtivoDAOImpl;
 import br.com.adfm.acoesfacil.model.Ativo;
+import br.com.adfm.acoesfacil.service.ConsultaAcoes;
+import br.com.adfm.acoesfacil.service.ConsultaAcoesXML;
 
 public class AcoesActivity extends ActionBarActivity {
 
     private ImageButton btnBuscar;
     private ImageView imgFavorito;
     private EditText txtAtivo;
-    AtivoDAO dao = null;
+    private AtivoDAO dao = null;
+    private ConsultaAcoes consultaAcoes;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -48,14 +51,23 @@ public class AcoesActivity extends ActionBarActivity {
                     AcoesActivity.this.txtAtivo.findFocus();
                 } else {
                     String strAtivo = AcoesActivity.this.txtAtivo.getText().toString();
-                    Log.d("TELA_ACOES", strAtivo);
-                    Ativo ativo = AcoesActivity.this.dao.consultarPeloAtivo(strAtivo);
-                    AcoesActivity.this.imgFavorito.setVisibility(View.VISIBLE);
+
+                    String link= "http://www.bmfbovespa.com.br/Pregao-Online/ExecutaAcaoAjax.asp?CodigoPapel=" + strAtivo;
+                    AcoesActivity.this.consultaAcoes = new ConsultaAcoesXML(link );
+                    AcoesActivity.this.consultaAcoes.consultar();
+
+                    //Ativo ativo = AcoesActivity.this.dao.consultarPeloAtivo(strAtivo.toUpperCase());
+
+                    /*AcoesActivity.this.imgFavorito.setVisibility(View.VISIBLE);
+
+
                     if (ativo == null){
                         AcoesActivity.this.imgFavorito.setImageResource(R.drawable.ic_acao_nao_favorita);
+                        Toast.makeText(getApplicationContext(),R.string.acao_msg_ativo_nao_encontrado , Toast.LENGTH_SHORT).show();
                     } else{
                         AcoesActivity.this.imgFavorito.setImageResource(R.drawable.ic_acao_favorito);
-                    }
+                        Toast.makeText(getApplicationContext(),R.string.acao_msg_ativo_encontrado , Toast.LENGTH_SHORT).show();
+                    }*/
 
                 }
             }
