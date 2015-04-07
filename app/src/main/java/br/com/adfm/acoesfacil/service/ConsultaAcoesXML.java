@@ -1,5 +1,7 @@
 package br.com.adfm.acoesfacil.service;
 
+import android.annotation.TargetApi;
+import android.os.Build;
 import android.util.Log;
 
 import org.xmlpull.v1.XmlPullParser;
@@ -80,13 +82,12 @@ public class ConsultaAcoesXML implements ConsultaAcoes {
                     Log.d("XML -> LOG", "End DOC");
                 } else if(eventType == XmlPullParser.START_TAG) {
                     String tagName = parser.getName();
-                    Log.d("XML -> LOG", "Start tag " + tagName);
 
                     String codigo = parser.getAttributeValue(null,"Codigo");
-                    Log.d("XML -> LOG", "Codigo" + codigo);
                     String nome = parser.getAttributeValue(null,"Nome");
                     String data = parser.getAttributeValue(null,"Data");
-                    Log.d("XML -> LOG", "Data" + data);
+                    Log.d("XML -> LOG", "DATA " + data);
+
                     String abertura = parser.getAttributeValue(null,"Abertura");
                     String minimo = parser.getAttributeValue(null,"Minimo");
                     String maximo = parser.getAttributeValue(null,"Maximo");
@@ -95,12 +96,30 @@ public class ConsultaAcoesXML implements ConsultaAcoes {
                     String oscilacao = parser.getAttributeValue(null,"Oscilacao");
 
                     ativo = new Ativo(codigo, 0d,0d);
-                    if (abertura != null) {
+                    if (abertura != null && abertura.length() > 0) {
                         ativo.setAbertura(Double.parseDouble(abertura.replace(",", ".")));
                     }
-                    if (minimo != null){
+
+                    if (minimo != null && minimo.length()>0){
                         ativo.setMinimo(Double.parseDouble(minimo.replace(",", ".")));
                     }
+
+                    if (maximo != null && maximo.length()>0){
+                        ativo.setMaximo(Double.parseDouble(maximo.replace(",", ".")));
+                    }
+
+                    if (medio != null && medio.length()>0){
+                        ativo.setMedio(Double.parseDouble(medio.replace(",", ".")));
+                    }
+
+                    if (ultimo != null && ultimo.length()>0){
+                        ativo.setUltimo(Double.parseDouble(ultimo.replace(",", ".")));
+                    }
+
+                    if (oscilacao != null && oscilacao.length()>0){
+                        ativo.setOscilacao(Double.parseDouble(oscilacao.replace(",", ".")));
+                    }
+
                 }else if(eventType == XmlPullParser.END_TAG) {
                     System.out.println("End tag "+parser.getName());
                 } else if(eventType == XmlPullParser.TEXT) {

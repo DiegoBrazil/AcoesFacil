@@ -16,6 +16,7 @@
     <string name="acao_msg_ativo_vazio">Por favor informe o ativo.</string>
     <string name="registro_gravado_sucesso">Registro gravado com sucesso.</string>
     <string name="acao_msg_ativo_encontrado">Ativo encontrado</string>
+    <string name="acao_nova_consulta">Nova</string>
     <string name="acao_msg_ativo_nao_encontrado">Ativo não encontrado</string>
 
 </resources>

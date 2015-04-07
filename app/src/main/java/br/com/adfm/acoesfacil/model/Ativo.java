@@ -9,15 +9,15 @@ import java.util.Date;
 public class Ativo {
 
     private String codigo;
-    private Double precoCompra;
-    private Double quantidadeCompra;
+    private Double precoCompra =0d;
+    private Double quantidadeCompra =0d;
     private Date data;
-    private Double minimo;
-    private Double maximo;
-    private Double medio;
-    private Double abertura;
-    private Double ultimo;
-    private Double oscilacao;
+    private Double minimo =0d;
+    private Double maximo =0d;
+    private Double medio =0d;
+    private Double abertura =0d;
+    private Double ultimo =0d;
+    private Double oscilacao =0d;
 
     public Ativo() {
         super();
