@@ -2,9 +2,8 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="br.com.adfm.acoesfacil" >
 
-    <uses-permission android:name="android.permission.INTERNET"/>
+    <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
-
 
     <application
         android:allowBackup="true"
@@ -20,26 +19,23 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-
         <activity
             android:name=".view.main.AcoesActivity"
             android:label="@string/title_activity_acoes" >
         </activity>
-
         <activity
             android:name=".view.main.AtivosFavoritos"
             android:label="@string/title_activity_favoritos" >
         </activity>
-
         <activity
             android:name=".view.main.ConfiguracaoActivity"
             android:label="@string/title_activity_configuracao" >
         </activity>
-
         <activity
-            android:name = ".view.main.EdicaoAtivoActivity"
-            android:label="@string/title_activity_edicaoFavorito">
-         </activity>
+            android:name=".view.main.EdicaoAtivoActivity"
+            android:label="@string/title_activity_edicaoFavorito" >
+        </activity>
+
     </application>
 
 </manifest>

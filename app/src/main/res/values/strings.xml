@@ -18,5 +18,8 @@
     <string name="acao_msg_ativo_encontrado">Ativo encontrado</string>
     <string name="acao_nova_consulta">Nova</string>
     <string name="acao_msg_ativo_nao_encontrado">Ativo não encontrado</string>
+    <string name="acao_msg_ativo_removido">\"Ativo Removido\"</string>
+    <string name="acao_msg_ativo_favorito">\"Ativo adicionado aos favoritos\"</string>
+    <string name="acao_msg_aguarde">Aguarde</string>
 
 </resources>
