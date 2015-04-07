@@ -5,6 +5,7 @@ import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
 
 import br.com.adfm.acoesfacil.R;
 
@@ -14,7 +15,11 @@ public class HomeActivity extends ActionBarActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_home);
+        if(getResources().getDisplayMetrics().widthPixels>getResources().getDisplayMetrics().heightPixels) {
+            setContentView(R.layout.activity_home_land);
+        } else {
+            setContentView(R.layout.activity_home);
+        }
     }
 
 
@@ -56,5 +61,20 @@ public class HomeActivity extends ActionBarActivity {
                 return super.onOptionsItemSelected(item);
         }
 
+    }
+
+    public void mostrarConf(View view ){
+        Intent intent = new Intent(this, ConfiguracaoActivity.class);
+        startActivity(intent);
+    }
+
+    public void mostrarFavoritos(View view){
+        Intent intent = new Intent(this, AtivosFavoritos.class);
+        startActivity(intent);
+    }
+
+    public void mostrarAcao(View view){
+        Intent intent = new Intent(this, AcoesActivity.class);
+        startActivity(intent);
     }
 }
