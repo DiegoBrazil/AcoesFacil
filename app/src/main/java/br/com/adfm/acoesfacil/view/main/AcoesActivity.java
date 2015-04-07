@@ -68,7 +68,7 @@ public class AcoesActivity extends ActionBarActivity {
     }
 
     private void limparTela() {
-        AcoesActivity.this.imgFavorito.setImageResource(R.drawable.ic_acao_favorito);
+        AcoesActivity.this.imgFavorito.setImageResource(R.drawable.ic_acao_nao_favorita);
         this.imgFavorito.setVisibility(View.INVISIBLE);
         this.imgOscilacao.setVisibility(View.INVISIBLE);
 
@@ -151,9 +151,9 @@ public class AcoesActivity extends ActionBarActivity {
                 Ativo ativoTemp = AcoesActivity.this.dao.consultarPeloAtivo(ativo.getCodigo());
 
                 if (ativoTemp != null) {
-                    AcoesActivity.this.imgFavorito.setImageResource(R.drawable.ic_acao_nao_favorita);
-                } else {
                     AcoesActivity.this.imgFavorito.setImageResource(R.drawable.ic_acao_favorito);
+                } else {
+                    AcoesActivity.this.imgFavorito.setImageResource(R.drawable.ic_acao_nao_favorita);
                 }
 
                 if (ativo.getOscilacao() > 0){
@@ -173,7 +173,7 @@ public class AcoesActivity extends ActionBarActivity {
         if (this.lblAtivo.getText() == null || this.lblAtivo.getText().length() == 0 ){
             Toast.makeText(getApplicationContext(),R.string.acao_msg_ativo_vazio , Toast.LENGTH_SHORT).show();
         } else {
-            String codigo = txtAtivo.getText().toString();
+            String codigo = txtAtivo.getText().toString().toUpperCase();
             Ativo ativoTemp = this.dao.consultarPeloAtivo(codigo);
 
             if (ativoTemp != null){

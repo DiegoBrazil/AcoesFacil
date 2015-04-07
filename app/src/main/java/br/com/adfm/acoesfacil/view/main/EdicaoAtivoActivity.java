@@ -21,23 +21,9 @@ public class EdicaoAtivoActivity extends ActionBarActivity {
     TextView quantidade;
 
     @Override
-    public void onStart() {
-        super.onStart();
-        //EventBus.getDefault().register(this);
-    }
-
-    @Override
-    public void onStop() {
-        //EventBus.getDefault().unregister(this);
-        super.onStop();
-    }
-
-    @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_edicao_ativo);
-
-        // Ativo myPOJO = (Ativo) EventBus.getDefault().removeStickyEvent(Ativo.class);
 
         Intent i = getIntent();
         String codigoAtivo = i.getStringExtra(BDAcoesFacilHelper.COL_ID_FAV);
@@ -57,7 +43,6 @@ public class EdicaoAtivoActivity extends ActionBarActivity {
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
         getMenuInflater().inflate(R.menu.menu_home, menu);
-        //getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         return true;
     }
 

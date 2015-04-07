@@ -31,7 +31,6 @@ import br.com.adfm.acoesfacil.database.AtivoDAO;
 import br.com.adfm.acoesfacil.database.BDAcoesFacilHelper;
 import br.com.adfm.acoesfacil.database.impl.AtivoDAOImpl;
 import br.com.adfm.acoesfacil.model.Ativo;
-import de.greenrobot.event.EventBus;
 
 import static android.app.PendingIntent.getActivity;
 import static android.widget.AdapterView.OnItemClickListener;
@@ -69,7 +68,6 @@ public class AtivosFavoritos extends ActionBarActivity {
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         getMenuInflater().inflate(R.menu.menu_home, menu);
-        //getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         return true;
     }
 
@@ -102,7 +100,7 @@ public class AtivosFavoritos extends ActionBarActivity {
     }
 
     @Override
-    protected void onStart(){
+    protected void onStart() {
         buscarConfiguracao();
         valorTot = 0d;
         this.carregarTodosFavoritosNaListView();
@@ -114,14 +112,10 @@ public class AtivosFavoritos extends ActionBarActivity {
                                             @Override
                                             public void onItemClick(AdapterView<?> adapterView, View view, int position, long index) {
                                                 //Pegar o item clicado e suas informações para passar para a próxima intent
-                                                HashMap<String,String> o = (HashMap) listView.getItemAtPosition(position);
-                                                // EventBus.getDefault().postSticky(new Ativo(o.get("COL_ID_FAV"),
-                                                //                                             Double.valueOf(o.get("COL_VLR_COMPRA_FAV")),
-                                                //                                             Double.valueOf(o.get("COL_QTD_COMPRA_FAV"))));
-
+                                                HashMap<String, String> o = (HashMap) listView.getItemAtPosition(position);
 
                                                 String ativoFavorito = o.get(BDAcoesFacilHelper.COL_ID_FAV);
-                                                Double quantidade =  Double.valueOf(o.get(BDAcoesFacilHelper.COL_QTD_COMPRA_FAV));
+                                                Double quantidade = Double.valueOf(o.get(BDAcoesFacilHelper.COL_QTD_COMPRA_FAV));
                                                 Double valor = Double.valueOf(o.get(BDAcoesFacilHelper.COL_VLR_COMPRA_FAV));
 
                                                 Intent intent = new Intent(getApplicationContext(), EdicaoAtivoActivity.class);
@@ -140,7 +134,7 @@ public class AtivosFavoritos extends ActionBarActivity {
 
     }
 
-    private void buscarConfiguracao(){
+    private void buscarConfiguracao() {
         SharedPreferences sharedPref = getSharedPreferences("activity_configuracao", Context.MODE_PRIVATE);
         cor = sharedPref.getFloat("valorCorretagem", 0);
         emo = sharedPref.getFloat("valorEmolumento", 0);
