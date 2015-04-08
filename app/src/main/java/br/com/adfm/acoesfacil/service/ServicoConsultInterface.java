@@ -1,5 +1,7 @@
 package br.com.adfm.acoesfacil.service;
 
+import java.util.List;
+
 import br.com.adfm.acoesfacil.model.Ativo;
 
 /**
@@ -7,5 +9,5 @@ import br.com.adfm.acoesfacil.model.Ativo;
  */
 public interface ServicoConsultInterface {
 
-    public void atualizarConsulta(Ativo ativo);
+    public void atualizarConsulta(List<Ativo> listaAtivo);
 }
