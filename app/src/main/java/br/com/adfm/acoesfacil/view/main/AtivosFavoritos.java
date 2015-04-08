@@ -211,8 +211,6 @@ public class AtivosFavoritos extends ActionBarActivity implements ServicoConsult
 
         TextView te = (TextView)findViewById(R.id.valorTotalLista);
         NumberFormat df = NumberFormat.getCurrencyInstance(new Locale("pt", "BR"));
-        //DecimalFormat df = new DecimalFormat("#,##0.00");
-        //df.setDecimalFormatSymbols( DecimalFormatSymbols.getInstance(new Locale("pt", "BR")));
         te.setText(" "+df.format(valorTot));
         te.setVisibility(View.VISIBLE);
     }

@@ -18,7 +18,7 @@
             android:layout_height="wrap_content"
             android:layout_weight="10"
             android:textStyle="bold"
-            android:width="200px"
+            android:width="260px"
             />
 
         <ImageView
@@ -33,7 +33,6 @@
             android:id="@+id/oscilacao"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="-2,77"
             android:textSize="16dp"
             android:textStyle="bold"
             android:typeface="serif"
