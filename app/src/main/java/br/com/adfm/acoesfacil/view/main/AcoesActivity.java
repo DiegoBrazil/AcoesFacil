@@ -15,6 +15,8 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import java.text.SimpleDateFormat;
+
 import br.com.adfm.acoesfacil.R;
 import br.com.adfm.acoesfacil.database.AtivoDAO;
 import br.com.adfm.acoesfacil.database.impl.AtivoDAOImpl;
@@ -145,6 +147,7 @@ public class AcoesActivity extends ActionBarActivity {
                 AcoesActivity.this.lblMedio.setText("Médio R$ " + ativo.getMedio());
                 AcoesActivity.this.lblMinima.setText("Máx. R$ " + ativo.getMinimo());
                 AcoesActivity.this.lblMaxima.setText("Min R$ " + ativo.getMaximo());
+                AcoesActivity.this.lblData.setText("Atualizado em:  " + new SimpleDateFormat("dd/MM/yyyy").format(ativo.getData()));
 
                 AcoesActivity.this.imgOscilacao.setVisibility(View.VISIBLE);
                 AcoesActivity.this.imgFavorito.setVisibility(View.VISIBLE);
@@ -166,7 +169,6 @@ public class AcoesActivity extends ActionBarActivity {
             }
             AcoesActivity.this.progress.setProgress(100);
             AcoesActivity.this.progress.dismiss();
-            Log.d("ASYNC Retorno", "");
         }
     }
 
@@ -193,7 +195,7 @@ public class AcoesActivity extends ActionBarActivity {
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
-        setContentView(R.layout.activity_ativos_favoritos);
+        getMenuInflater().inflate(R.menu.menu_acoes, menu);
         return true;
     }
 

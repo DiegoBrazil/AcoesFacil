@@ -14,6 +14,8 @@ import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
 import java.net.URL;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 
 import br.com.adfm.acoesfacil.model.Ativo;
 
@@ -37,7 +39,7 @@ public class ConsultaAcoesXML implements ConsultaAcoes {
         HttpURLConnection conn = null;
         try {
             String strUrl = this.link;
-            Log.d("Consulta Acoes", strUrl);
+            Log.d("Consulta Acoes ", strUrl);
 
             String xml = null;
             URL url = new URL(strUrl);
@@ -85,9 +87,7 @@ public class ConsultaAcoesXML implements ConsultaAcoes {
 
                     String codigo = parser.getAttributeValue(null,"Codigo");
                     String nome = parser.getAttributeValue(null,"Nome");
-                    String data = parser.getAttributeValue(null,"Data");
-                    Log.d("XML -> LOG", "DATA " + data);
-
+                    String strData = parser.getAttributeValue(null,"Data");
                     String abertura = parser.getAttributeValue(null,"Abertura");
                     String minimo = parser.getAttributeValue(null,"Minimo");
                     String maximo = parser.getAttributeValue(null,"Maximo");
@@ -120,7 +120,12 @@ public class ConsultaAcoesXML implements ConsultaAcoes {
                         ativo.setOscilacao(Double.parseDouble(oscilacao.replace(",", ".")));
                     }
 
-                }else if(eventType == XmlPullParser.END_TAG) {
+                    if (strData != null && strData.length() > 0) {
+                        Log.d("LOG","Data " +  strData.substring(0,10));
+                        ativo.setData(new SimpleDateFormat("dd/MM/yyyy").parse(strData.substring(0,10).toString()));
+                    }
+
+                } else if(eventType == XmlPullParser.END_TAG) {
                     System.out.println("End tag "+parser.getName());
                 } else if(eventType == XmlPullParser.TEXT) {
                     System.out.println("Text " + parser.getText());
@@ -132,6 +137,8 @@ public class ConsultaAcoesXML implements ConsultaAcoes {
         } catch (XmlPullParserException e) {
             e.printStackTrace();
         } catch (IOException e) {
+            e.printStackTrace();
+        } catch (ParseException e) {
             e.printStackTrace();
         }
 
