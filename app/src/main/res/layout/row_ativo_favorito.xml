@@ -51,7 +51,7 @@
 
         <TextView
             android:id="@+id/textValorRealPrimeiraLinha"
-            android:layout_width="24dp"
+            android:layout_width="50dp"
             android:layout_height="wrap_content"
             android:textColor="#ff8eff0c"
             android:textSize="16dp"
