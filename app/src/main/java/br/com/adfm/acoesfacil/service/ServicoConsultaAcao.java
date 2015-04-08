@@ -4,16 +4,20 @@ import android.os.AsyncTask;
 import android.widget.EditText;
 import android.widget.TextView;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import br.com.adfm.acoesfacil.model.Ativo;
 
 /**
  * Created by Felipe on 06/04/2015.
  */
-public class ServicoConsultaAcao extends AsyncTask<String,Void, Ativo > {
+public class ServicoConsultaAcao extends AsyncTask< String,Void, List<Ativo> > {
 
 
     private ConsultaAcoes consultaAcoes;
     private ServicoConsultInterface servicoConsultInterface;
+    private String url ="http://www.bmfbovespa.com.br/Pregao-Online/ExecutaAcaoAjax.asp?CodigoPapel=";
 
     public ServicoConsultaAcao(ServicoConsultInterface servicoConsultInterface){
         this.servicoConsultInterface = servicoConsultInterface;
@@ -33,16 +37,18 @@ public class ServicoConsultaAcao extends AsyncTask<String,Void, Ativo > {
      * @see #publishProgress
      */
     @Override
-    protected Ativo doInBackground(String... params) {
-        String url = params[0];
-        String cdAtivo = params[1];
-        consultaAcoes = new ConsultaAcoesXML(url+cdAtivo);
-        Ativo ativo = consultaAcoes.consultar();
-        return ativo;
+    protected List<Ativo> doInBackground(String... params) {
+        List<Ativo> retorno = new ArrayList<Ativo>();
+        for (int i = 0; i < params.length; i++) {
+            consultaAcoes = new ConsultaAcoesXML(url+params[i]);
+            Ativo ativo = consultaAcoes.consultar();
+            retorno.add(ativo);
+        }
+        return retorno;
     }
 
     @Override
-    protected void onPostExecute(Ativo response) {
+    protected void onPostExecute(List<Ativo> response) {
         if(response != null){
             servicoConsultInterface.atualizarConsulta(response);
         }

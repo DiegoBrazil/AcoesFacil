@@ -29,6 +29,23 @@ public class Ativo {
         this.quantidadeCompra = quantidadeCompra;
     }
 
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+
+        Ativo ativo = (Ativo) o;
+
+        if (codigo != null ? !codigo.equals(ativo.codigo) : ativo.codigo != null) return false;
+
+        return true;
+    }
+
+    @Override
+    public int hashCode() {
+        return codigo != null ? codigo.hashCode() : 0;
+    }
+
     public String getCodigo() {
         return codigo;
     }
