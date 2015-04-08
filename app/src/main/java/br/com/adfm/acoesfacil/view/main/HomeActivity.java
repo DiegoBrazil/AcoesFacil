@@ -15,13 +15,8 @@ public class HomeActivity extends ActionBarActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        if(getResources().getDisplayMetrics().widthPixels>getResources().getDisplayMetrics().heightPixels) {
-            setContentView(R.layout.activity_home_land);
-        } else {
-            setContentView(R.layout.activity_home);
-        }
+        setContentView(R.layout.activity_home);
     }
-
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
@@ -32,16 +27,6 @@ public class HomeActivity extends ActionBarActivity {
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
-        // Handle action bar item clicks here. The action bar will
-        // automatically handle clicks on the Home/Up button, so long
-        // as you specify a parent activity in AndroidManifest.xml.
-        //int id = item.getItemId();
-
-        //noinspection SimplifiableIfStatement
-        //if (id == R.id.action_settings) {
-        //    return true;
-        //}
-
         Intent intent = null;
 
         switch (item.getItemId()) {
@@ -60,7 +45,6 @@ public class HomeActivity extends ActionBarActivity {
             default:
                 return super.onOptionsItemSelected(item);
         }
-
     }
 
     public void mostrarConf(View view ){

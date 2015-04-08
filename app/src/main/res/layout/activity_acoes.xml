@@ -17,17 +17,15 @@
 
         <LinearLayout android:id="@+id/layoutPesquisa"
             android:gravity="end"
-            android:layout_width="wrap_content"
+            android:layout_width="fill_parent"
             android:layout_height="50dp"
             android:layout_weight="1">
 
             <EditText
                 android:id="@+id/txtAtivo"
-                android:layout_width="240dp"
+                android:layout_width="250dp"
                 android:layout_height="50dp"
-                android:textStyle="bold"
-                android:text="PETR4"
-                android:layout_marginLeft="12dp" />
+                android:textStyle="bold"/>
 
             <ImageButton
                 android:id="@+id/btnBuscar"
@@ -40,14 +38,15 @@
                 android:layout_below="@id/layoutPesquisa"
                 android:layout_width="50dp"
                 android:gravity="end"
-                android:layout_height="40dp">
+                android:layout_height="40dp"
+                android:orientation="vertical">
 
                 <ImageView
                     android:id="@+id/imgFavorito"
                     android:src="@drawable/ic_acao_nao_favorita"
                     android:layout_width="50dp"
                     android:onClick="favoritarAtivo"
-                    android:layout_height="48dp" />
+                    android:layout_height="match_parent" />
             </LinearLayout>
         </LinearLayout>
 

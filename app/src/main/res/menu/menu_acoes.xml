@@ -3,7 +3,16 @@
     xmlns:tools="http://schemas.android.com/tools"
     tools:context="br.com.adfm.acoesfacil.view.main.AcoesActivity">
 
-    <item android:id="@+id/menu_novo"
-        android:title="@string/acao_nova_consulta"
-        android:orderInCategory="100" app:showAsAction="ifRoom" />
+    <item android:id="@+id/acao"
+        android:icon="@drawable/acoes1"
+        android:title="@string/menu_acao"/>
+
+    <!--app:showAsAction="always|withText"-->
+    <item android:id="@+id/favoritos"
+        android:icon="@drawable/ic_acao_favorita"
+        android:title="@string/menu_favoritas" />
+
+    <item android:id="@+id/configuracao"
+        android:title="@string/menu_conf" />
+
 </menu>
