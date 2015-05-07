@@ -14,7 +14,7 @@ import android.widget.Toast;
 
 import br.com.adfm.acoesfacil.R;
 
-public class ConfiguracaoActivity extends ActionBarActivity {
+public class ConfiguracaoActivity extends Activity {
 
     private SharedPreferences sharedPref;
 
@@ -37,7 +37,6 @@ public class ConfiguracaoActivity extends ActionBarActivity {
         emol.setText(emo.toString());
         EditText impr = (EditText)findViewById(R.id.valorImpRenda);
         impr.setText(ir.toString());
-
     }
 
 

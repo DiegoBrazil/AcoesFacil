@@ -1,5 +1,6 @@
 package br.com.adfm.acoesfacil.view.main;
 
+import android.app.Activity;
 import android.app.ProgressDialog;
 import android.content.Intent;
 import android.os.AsyncTask;
@@ -24,7 +25,7 @@ import br.com.adfm.acoesfacil.model.Ativo;
 import br.com.adfm.acoesfacil.service.ConsultaAcoes;
 import br.com.adfm.acoesfacil.service.ConsultaAcoesXML;
 
-public class AcoesActivity extends ActionBarActivity {
+public class AcoesActivity extends Activity {
 
     private Ativo ativo;
     private ImageButton btnBuscar;

@@ -1,76 +1,89 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-xmlns:tools="http://schemas.android.com/tools"
-android:layout_width="match_parent"
-android:layout_height="match_parent"
-android:orientation="vertical"
-android:paddingBottom="@dimen/activity_vertical_margin"
-android:paddingLeft="@dimen/activity_horizontal_margin"
-android:paddingRight="@dimen/activity_horizontal_margin"
-android:paddingTop="@dimen/activity_vertical_margin"
-tools:context="br.com.adfm.acoesfacil.view.main.ConfiguracaoActivity">
-
-<TextView android:id="@+id/textoTitlle"
-    android:text="Configurações de Taxas"
-    android:layout_width="wrap_content"
-    android:layout_height="wrap_content"
-    android:textSize="29dp"
-    android:paddingBottom="15dp"/>
-
-<TextView android:id="@+id/textoCorretagem"
-    android:text="Corretagem R$"
-    android:layout_width="wrap_content"
-    android:layout_height="wrap_content"
-    android:textSize="25dp"
-    />
- <EditText android:id="@+id/valorCorretagem"
-     android:layout_width="match_parent"
-     android:layout_height="wrap_content"
-     android:inputType="numberDecimal"/>
-
-<TextView
-    android:layout_width="wrap_content"
-    android:layout_height="wrap_content"
-    android:text="Emolumentos"
-    android:textSize="25dp"/>
-
-<EditText android:id="@+id/valorEmolumento"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:background="@color/background_material_light"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    android:textSize="25dp"
-    android:inputType="numberDecimal" />
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:paddingBottom="@dimen/activity_vertical_margin"
+    android:paddingLeft="@dimen/activity_horizontal_margin"
+    android:paddingRight="@dimen/activity_horizontal_margin"
+    android:paddingTop="@dimen/activity_vertical_margin"
+    tools:context="br.com.adfm.acoesfacil.view.main.ConfiguracaoActivity">
 
-<TextView  android:textSize="25dp"
-    android:layout_width="wrap_content"
-    android:layout_height="wrap_content"
-    android:text="Custódia" />
-
-<EditText android:id="@+id/valorCustodia"
-    android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    android:textSize="25dp"
-    android:inputType="numberDecimal"/>
-
-<TextView  android:textSize="25dp"
-    android:layout_width="wrap_content"
-    android:layout_height="wrap_content"
-    android:text="Imposto de renda (%)" />
-
-<EditText android:id="@+id/valorImpRenda"
-    android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    android:textSize="25dp"
-    android:inputType="numberDecimal"/>
-
-<LinearLayout
-    android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    android:gravity="center_horizontal">
-
-   <Button android:id="@+id/btnSalvarConf"
-        android:layout_width="120dp"
+    <TextView
+        android:id="@+id/textoTitlle"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Salvar"
-       android:onClick="salvarConfig"/>
-</LinearLayout>
+        android:paddingBottom="15dp"
+        android:text="Configurações de Taxas"
+        android:textSize="25sp"
+        android:textStyle="bold"/>
+
+    <TextView
+        android:id="@+id/textoCorretagem"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Corretagem R$"
+        android:textSize="18sp" />
+
+    <EditText
+        android:id="@+id/valorCorretagem"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:inputType="numberDecimal"
+        android:textSize="18sp"/>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Emolumentos"
+        android:textSize="18sp" />
+
+    <EditText
+        android:id="@+id/valorEmolumento"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:inputType="numberDecimal"
+        android:textSize="18sp" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Custódia"
+        android:textSize="18sp" />
+
+    <EditText
+        android:id="@+id/valorCustodia"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:inputType="numberDecimal"
+        android:textSize="18sp" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Imposto de renda (%)"
+        android:textSize="18sp" />
+
+    <EditText
+        android:id="@+id/valorImpRenda"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:inputType="numberDecimal"
+        android:textSize="18sp" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center_horizontal">
+
+        <Button
+            android:id="@+id/btnSalvarConf"
+            android:layout_width="120dp"
+            android:layout_height="wrap_content"
+            android:onClick="salvarConfig"
+            android:text="Salvar"
+            android:textSize="18sp"/>
+    </LinearLayout>
 
 </LinearLayout>

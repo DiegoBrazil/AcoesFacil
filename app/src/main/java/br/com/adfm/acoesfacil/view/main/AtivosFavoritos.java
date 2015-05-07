@@ -1,5 +1,7 @@
 package br.com.adfm.acoesfacil.view.main;
 
+import android.app.Activity;
+import android.app.TabActivity;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
@@ -14,6 +16,7 @@ import android.widget.AdapterView;
 import android.widget.EditText;
 import android.widget.ListView;
 import android.widget.SimpleAdapter;
+import android.widget.TabHost;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -42,7 +45,7 @@ import static android.widget.AdapterView.OnItemClickListener;
  * Classe para controlar os favoritos.
  * Created by akio on 03/04/15.
  */
-public class AtivosFavoritos extends ActionBarActivity implements ServicoConsultInterface {
+public class AtivosFavoritos extends Activity implements ServicoConsultInterface {
 
     private SimpleAdapter dataAdapter;
     private AtivoDAO ativoDAO;
@@ -272,6 +275,5 @@ public class AtivosFavoritos extends ActionBarActivity implements ServicoConsult
         }
         valorTot= valorTot-cus;
     }
-
 
 }

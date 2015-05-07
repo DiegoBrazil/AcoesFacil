@@ -1,37 +1,41 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:orientation="vertical"
     xmlns:tools="http://schemas.android.com/tools"
-    tools:context="br.com.adfm.acoesfacil.view.main.AtivosFavoritos"
-    android:background="#ff28a7ff">
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:background="@color/background_material_light"
+    android:orientation="vertical"
+    tools:context="br.com.adfm.acoesfacil.view.main.AtivosFavoritos">
 
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-        android:layout_width="match_parent"
+    <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:tools="http://schemas.android.com/tools"
+        android:layout_width="fill_parent"
         android:layout_height="40dp"
         android:orientation="horizontal"
-        xmlns:tools="http://schemas.android.com/tools"
         android:paddingTop="5dp">
-    <TextView android:id="@+id/labelValorTotal"
-        android:text="Valor Total"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:textSize="25dp"
+
+        <TextView
+            android:id="@+id/labelValorTotal"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Valor Total"
+            android:textSize="25sp"
+            android:textStyle="bold"/>
+
+        <TextView
+            android:id="@+id/valorTotalLista"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:paddingLeft="40dp"
+            android:textSize="25sp"
+            android:textStyle="bold"/>
+    </LinearLayout>
+
+    <ListView
+        android:id="@+id/ativosList"
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:divider="@android:color/transparent"
+        android:dividerHeight="2sp"
+
         />
-    <TextView android:id="@+id/valorTotalLista"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:textSize="25dp"
-        android:paddingLeft="40dp" />
-</LinearLayout>
-
-<ListView
-    android:id="@+id/ativosList"
-    android:layout_width="fill_parent"
-    android:layout_height="wrap_content"
-    android:divider="@android:color/transparent"
-    android:dividerHeight="2sp"
-
-    />
-
 </LinearLayout>

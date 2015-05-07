@@ -14,36 +14,37 @@
         android:layout_height="wrap_content"
         android:layout_gravity="center_horizontal"
         android:text="Edição de Ativo"
-        android:textSize="40dp" />
+        android:textSize="25sp"
+        android:textStyle="bold"/>
 
     <TextView android:id="@+id/idNomeAtivo"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center_horizontal"
-        android:textSize="30dp" />
+        android:textSize="22sp" />
 
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Quantidade"
-        android:textSize="25dp" />
+        android:textSize="18sp" />
 
     <EditText android:id="@+id/idQuantidade"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:textSize="25dp"
+        android:textSize="18sp"
         android:inputType="numberDecimal"/>
 
     <TextView
-        android:textSize="25dp"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Preço de compra" />
+        android:text="Preço de compra"
+        android:textSize="18sp"/>
 
     <EditText android:id="@+id/idPrecoCompra"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:textSize="25dp"
+        android:textSize="18sp"
         android:inputType="numberDecimal"/>
 
     <LinearLayout
