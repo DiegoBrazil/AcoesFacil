@@ -17,14 +17,13 @@
         android:layout_height="wrap_content">
 
         <LinearLayout android:id="@+id/layoutPesquisa"
-            android:gravity="end"
             android:layout_width="fill_parent"
             android:layout_height="50dp"
             android:layout_weight="1">
 
             <EditText
                 android:id="@+id/txtAtivo"
-                android:layout_width="249dp"
+                android:layout_width="239dp"
                 android:layout_height="50dp"
                 android:textStyle="bold"/>
 
